@@ -62,6 +62,17 @@ RSpec.describe "merchant bulk discounts index page" do
         expect(current_path).to eq(merchant_bulk_discounts_path(@merch_2))
         expect(page).to_not have_content(@bulk_discount_3.id)
     end
+
+    it 'displays an upcoming holidays header and the name and date of next 3 upcoming holidays' do
+      visit merchant_bulk_discounts_path(@merch_1)
+
+      within("#holidays-") do
+        expect(page).to have_content("Upcoming Holidays")
+        expect(page).to have_content("Memorial Day ~ 2023-05-29")
+        expect(page).to have_content("Juneteenth ~ 2023-06-19")
+        expect(page).to have_content("Independence Day ~ 2023-07-04")
+      end
+    end
   end
 end
-    
+ 
